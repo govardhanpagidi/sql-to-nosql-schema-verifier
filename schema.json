@@ -1,0 +1,2534 @@
+{
+  "id" : "809bc42b5da042d8abd138f3acfbea64",
+  "name" : "migration3",
+  "type" : "MYSQL",
+  "lastModified" : "2022-09-05T18:40:25.88915Z",
+  "schemasId" : "809bc42b5da042d8abd138f3acfbea64",
+  "content" : {
+    "settings" : {
+      "casing" : null,
+      "keyHandling" : "WRAPPED"
+    },
+    "collections" : {
+      "36f6e69c-fba6-40a2-8cd3-30b48b9f11a4" : {
+        "name" : "film_category"
+      },
+      "e4dccdbb-565b-45cf-934d-f276a80504b6" : {
+        "name" : "country"
+      },
+      "9c565310-1967-44e3-805e-7f66e66449ab" : {
+        "name" : "address"
+      },
+      "fe2aed88-ce5e-4eb0-9228-12a85fa0f56b" : {
+        "name" : "city"
+      },
+      "139c930f-d682-45ea-a2dc-ba689ed6ccc8" : {
+        "name" : "film_actor"
+      },
+      "8c897e3a-9987-49e2-8724-3635333c28c0" : {
+        "name" : "language"
+      },
+      "c93ffbf9-0fc4-47d3-9f01-3c4357315968" : {
+        "name" : "staff"
+      },
+      "efe00199-02b7-46c8-aa64-a792a2136d10" : {
+        "name" : "film"
+      },
+      "b46f88d6-842c-433f-bd41-422633a373bd" : {
+        "name" : "store"
+      },
+      "860a06ea-70fd-492c-8a04-cf8cab1afb06" : {
+        "name" : "inventory"
+      },
+      "675a0935-4cd5-44fb-a7c0-9a125df47c2f" : {
+        "name" : "rental"
+      },
+      "6b64c0ad-2372-483c-8d67-d7f09ebae0f0" : {
+        "name" : "actor"
+      },
+      "6cfb781e-ed6a-4830-a7e0-3ab2c18836b2" : {
+        "name" : "film_text"
+      },
+      "8fc442d6-b0eb-44c4-87aa-2f553bfcd160" : {
+        "name" : "payment"
+      },
+      "24e95982-1d9d-43b0-950c-7246410a786b" : {
+        "name" : "category"
+      },
+      "949437d4-a6f4-4a7e-bd96-5d9fc591dd7c" : {
+        "name" : "customer"
+      }
+    },
+    "mappings" : {
+      "d9876627-dad7-4327-96ee-beec082125ee" : {
+        "settings" : {
+          "type" : "NEW_DOCUMENT",
+          "notes" : null,
+          "embeddedPath" : null
+        },
+        "fields" : {
+          "film_id" : {
+            "target" : {
+              "name" : "_id.film_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "film_id",
+              "javaSqlType" : "SMALLINT",
+              "databaseSpecificType" : "SMALLINT UNSIGNED",
+              "isPrimaryKey" : true
+            }
+          },
+          "category_id" : {
+            "target" : {
+              "name" : "_id.category_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "category_id",
+              "javaSqlType" : "TINYINT",
+              "databaseSpecificType" : "TINYINT UNSIGNED",
+              "isPrimaryKey" : true
+            }
+          },
+          "last_update" : {
+            "target" : {
+              "name" : "last_update",
+              "included" : true,
+              "type" : "STRING",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "last_update",
+              "javaSqlType" : "TIMESTAMP",
+              "databaseSpecificType" : "TIMESTAMP",
+              "isPrimaryKey" : false
+            }
+          }
+        },
+        "collectionId" : "36f6e69c-fba6-40a2-8cd3-30b48b9f11a4",
+        "table" : "sakila.sakila.film_category"
+      },
+      "8adbe561-b447-4548-a941-32fa67dcd7b1" : {
+        "settings" : {
+          "type" : "NEW_DOCUMENT",
+          "notes" : null,
+          "embeddedPath" : null
+        },
+        "fields" : {
+          "country_id" : {
+            "target" : {
+              "name" : "_id.country_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "country_id",
+              "javaSqlType" : "SMALLINT",
+              "databaseSpecificType" : "SMALLINT UNSIGNED",
+              "isPrimaryKey" : true
+            }
+          },
+          "country" : {
+            "target" : {
+              "name" : "country",
+              "included" : true,
+              "type" : "STRING",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "country",
+              "javaSqlType" : "VARCHAR",
+              "databaseSpecificType" : "VARCHAR",
+              "isPrimaryKey" : false
+            }
+          },
+          "last_update" : {
+            "target" : {
+              "name" : "last_update",
+              "included" : true,
+              "type" : "STRING",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "last_update",
+              "javaSqlType" : "TIMESTAMP",
+              "databaseSpecificType" : "TIMESTAMP",
+              "isPrimaryKey" : false
+            }
+          }
+        },
+        "collectionId" : "e4dccdbb-565b-45cf-934d-f276a80504b6",
+        "table" : "sakila.sakila.country"
+      },
+      "b7c76e06-7ecb-4521-a7f2-bf5e0bfde31a" : {
+        "settings" : {
+          "type" : "NEW_DOCUMENT",
+          "notes" : null,
+          "embeddedPath" : null
+        },
+        "fields" : {
+          "address_id" : {
+            "target" : {
+              "name" : "_id.address_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "address_id",
+              "javaSqlType" : "SMALLINT",
+              "databaseSpecificType" : "SMALLINT UNSIGNED",
+              "isPrimaryKey" : true
+            }
+          },
+          "address" : {
+            "target" : {
+              "name" : "address",
+              "included" : true,
+              "type" : "STRING",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "address",
+              "javaSqlType" : "VARCHAR",
+              "databaseSpecificType" : "VARCHAR",
+              "isPrimaryKey" : false
+            }
+          },
+          "address2" : {
+            "target" : {
+              "name" : "address2",
+              "included" : true,
+              "type" : "STRING",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "address2",
+              "javaSqlType" : "VARCHAR",
+              "databaseSpecificType" : "VARCHAR",
+              "isPrimaryKey" : false
+            }
+          },
+          "district" : {
+            "target" : {
+              "name" : "district",
+              "included" : true,
+              "type" : "STRING",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "district",
+              "javaSqlType" : "VARCHAR",
+              "databaseSpecificType" : "VARCHAR",
+              "isPrimaryKey" : false
+            }
+          },
+          "city_id" : {
+            "target" : {
+              "name" : "city_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "city_id",
+              "javaSqlType" : "SMALLINT",
+              "databaseSpecificType" : "SMALLINT UNSIGNED",
+              "isPrimaryKey" : false
+            }
+          },
+          "postal_code" : {
+            "target" : {
+              "name" : "postal_code",
+              "included" : true,
+              "type" : "STRING",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "postal_code",
+              "javaSqlType" : "VARCHAR",
+              "databaseSpecificType" : "VARCHAR",
+              "isPrimaryKey" : false
+            }
+          },
+          "phone" : {
+            "target" : {
+              "name" : "phone",
+              "included" : true,
+              "type" : "STRING",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "phone",
+              "javaSqlType" : "VARCHAR",
+              "databaseSpecificType" : "VARCHAR",
+              "isPrimaryKey" : false
+            }
+          },
+          "location" : {
+            "target" : {
+              "name" : "location",
+              "included" : true,
+              "type" : "AUTO",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "location",
+              "javaSqlType" : "BINARY",
+              "databaseSpecificType" : "GEOMETRY",
+              "isPrimaryKey" : false
+            }
+          },
+          "last_update" : {
+            "target" : {
+              "name" : "last_update",
+              "included" : true,
+              "type" : "STRING",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "last_update",
+              "javaSqlType" : "TIMESTAMP",
+              "databaseSpecificType" : "TIMESTAMP",
+              "isPrimaryKey" : false
+            }
+          }
+        },
+        "collectionId" : "9c565310-1967-44e3-805e-7f66e66449ab",
+        "table" : "sakila.sakila.address"
+      },
+      "f0dddbb7-beaf-4a61-998b-55a0dbd5eff5" : {
+        "settings" : {
+          "type" : "NEW_DOCUMENT",
+          "notes" : null,
+          "embeddedPath" : null
+        },
+        "fields" : {
+          "city_id" : {
+            "target" : {
+              "name" : "_id.city_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "city_id",
+              "javaSqlType" : "SMALLINT",
+              "databaseSpecificType" : "SMALLINT UNSIGNED",
+              "isPrimaryKey" : true
+            }
+          },
+          "city" : {
+            "target" : {
+              "name" : "city",
+              "included" : true,
+              "type" : "STRING",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "city",
+              "javaSqlType" : "VARCHAR",
+              "databaseSpecificType" : "VARCHAR",
+              "isPrimaryKey" : false
+            }
+          },
+          "country_id" : {
+            "target" : {
+              "name" : "country_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "country_id",
+              "javaSqlType" : "SMALLINT",
+              "databaseSpecificType" : "SMALLINT UNSIGNED",
+              "isPrimaryKey" : false
+            }
+          },
+          "last_update" : {
+            "target" : {
+              "name" : "last_update",
+              "included" : true,
+              "type" : "STRING",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "last_update",
+              "javaSqlType" : "TIMESTAMP",
+              "databaseSpecificType" : "TIMESTAMP",
+              "isPrimaryKey" : false
+            }
+          }
+        },
+        "collectionId" : "fe2aed88-ce5e-4eb0-9228-12a85fa0f56b",
+        "table" : "sakila.sakila.city"
+      },
+      "59497e7c-6ffe-4f6b-8178-f6ab7bc991d0" : {
+        "settings" : {
+          "type" : "NEW_DOCUMENT",
+          "notes" : null,
+          "embeddedPath" : null
+        },
+        "fields" : {
+          "actor_id" : {
+            "target" : {
+              "name" : "_id.actor_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "actor_id",
+              "javaSqlType" : "SMALLINT",
+              "databaseSpecificType" : "SMALLINT UNSIGNED",
+              "isPrimaryKey" : true
+            }
+          },
+          "film_id" : {
+            "target" : {
+              "name" : "_id.film_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "film_id",
+              "javaSqlType" : "SMALLINT",
+              "databaseSpecificType" : "SMALLINT UNSIGNED",
+              "isPrimaryKey" : true
+            }
+          },
+          "last_update" : {
+            "target" : {
+              "name" : "last_update",
+              "included" : true,
+              "type" : "STRING",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "last_update",
+              "javaSqlType" : "TIMESTAMP",
+              "databaseSpecificType" : "TIMESTAMP",
+              "isPrimaryKey" : false
+            }
+          }
+        },
+        "collectionId" : "139c930f-d682-45ea-a2dc-ba689ed6ccc8",
+        "table" : "sakila.sakila.film_actor"
+      },
+      "c1828097-5723-4dd9-b66f-860151654028" : {
+        "settings" : {
+          "type" : "NEW_DOCUMENT",
+          "notes" : null,
+          "embeddedPath" : null
+        },
+        "fields" : {
+          "language_id" : {
+            "target" : {
+              "name" : "_id.language_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "language_id",
+              "javaSqlType" : "TINYINT",
+              "databaseSpecificType" : "TINYINT UNSIGNED",
+              "isPrimaryKey" : true
+            }
+          },
+          "name" : {
+            "target" : {
+              "name" : "name",
+              "included" : true,
+              "type" : "STRING",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "name",
+              "javaSqlType" : "CHAR",
+              "databaseSpecificType" : "CHAR",
+              "isPrimaryKey" : false
+            }
+          },
+          "last_update" : {
+            "target" : {
+              "name" : "last_update",
+              "included" : true,
+              "type" : "STRING",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "last_update",
+              "javaSqlType" : "TIMESTAMP",
+              "databaseSpecificType" : "TIMESTAMP",
+              "isPrimaryKey" : false
+            }
+          }
+        },
+        "collectionId" : "8c897e3a-9987-49e2-8724-3635333c28c0",
+        "table" : "sakila.sakila.language"
+      },
+      "20ebb891-903b-4517-83c9-d7f7d029b4eb" : {
+        "settings" : {
+          "type" : "NEW_DOCUMENT",
+          "notes" : null,
+          "embeddedPath" : null
+        },
+        "fields" : {
+          "staff_id" : {
+            "target" : {
+              "name" : "_id.staff_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "staff_id",
+              "javaSqlType" : "TINYINT",
+              "databaseSpecificType" : "TINYINT UNSIGNED",
+              "isPrimaryKey" : true
+            }
+          },
+          "first_name" : {
+            "target" : {
+              "name" : "first_name",
+              "included" : true,
+              "type" : "STRING",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "first_name",
+              "javaSqlType" : "VARCHAR",
+              "databaseSpecificType" : "VARCHAR",
+              "isPrimaryKey" : false
+            }
+          },
+          "last_name" : {
+            "target" : {
+              "name" : "last_name",
+              "included" : true,
+              "type" : "STRING",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "last_name",
+              "javaSqlType" : "VARCHAR",
+              "databaseSpecificType" : "VARCHAR",
+              "isPrimaryKey" : false
+            }
+          },
+          "address_id" : {
+            "target" : {
+              "name" : "address_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "address_id",
+              "javaSqlType" : "SMALLINT",
+              "databaseSpecificType" : "SMALLINT UNSIGNED",
+              "isPrimaryKey" : false
+            }
+          },
+          "picture" : {
+            "target" : {
+              "name" : "picture",
+              "included" : true,
+              "type" : "BIN_DATA",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "picture",
+              "javaSqlType" : "LONGVARBINARY",
+              "databaseSpecificType" : "BLOB",
+              "isPrimaryKey" : false
+            }
+          },
+          "email" : {
+            "target" : {
+              "name" : "email",
+              "included" : true,
+              "type" : "STRING",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "email",
+              "javaSqlType" : "VARCHAR",
+              "databaseSpecificType" : "VARCHAR",
+              "isPrimaryKey" : false
+            }
+          },
+          "store_id" : {
+            "target" : {
+              "name" : "store_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "store_id",
+              "javaSqlType" : "TINYINT",
+              "databaseSpecificType" : "TINYINT UNSIGNED",
+              "isPrimaryKey" : false
+            }
+          },
+          "active" : {
+            "target" : {
+              "name" : "active",
+              "included" : true,
+              "type" : "BOOL",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "active",
+              "javaSqlType" : "BIT",
+              "databaseSpecificType" : "BIT",
+              "isPrimaryKey" : false
+            }
+          },
+          "username" : {
+            "target" : {
+              "name" : "username",
+              "included" : true,
+              "type" : "STRING",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "username",
+              "javaSqlType" : "VARCHAR",
+              "databaseSpecificType" : "VARCHAR",
+              "isPrimaryKey" : false
+            }
+          },
+          "password" : {
+            "target" : {
+              "name" : "password",
+              "included" : true,
+              "type" : "STRING",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "password",
+              "javaSqlType" : "VARCHAR",
+              "databaseSpecificType" : "VARCHAR",
+              "isPrimaryKey" : false
+            }
+          },
+          "last_update" : {
+            "target" : {
+              "name" : "last_update",
+              "included" : true,
+              "type" : "STRING",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "last_update",
+              "javaSqlType" : "TIMESTAMP",
+              "databaseSpecificType" : "TIMESTAMP",
+              "isPrimaryKey" : false
+            }
+          }
+        },
+        "collectionId" : "c93ffbf9-0fc4-47d3-9f01-3c4357315968",
+        "table" : "sakila.sakila.staff"
+      },
+      "98b5942c-d9d2-4a82-a172-a2b9667fff9c" : {
+        "settings" : {
+          "type" : "NEW_DOCUMENT",
+          "notes" : null,
+          "embeddedPath" : null
+        },
+        "fields" : {
+          "film_id" : {
+            "target" : {
+              "name" : "_id.film_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "film_id",
+              "javaSqlType" : "SMALLINT",
+              "databaseSpecificType" : "SMALLINT UNSIGNED",
+              "isPrimaryKey" : true
+            }
+          },
+          "title" : {
+            "target" : {
+              "name" : "title",
+              "included" : true,
+              "type" : "STRING",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "title",
+              "javaSqlType" : "VARCHAR",
+              "databaseSpecificType" : "VARCHAR",
+              "isPrimaryKey" : false
+            }
+          },
+          "description" : {
+            "target" : {
+              "name" : "description",
+              "included" : true,
+              "type" : "STRING",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "description",
+              "javaSqlType" : "LONGVARCHAR",
+              "databaseSpecificType" : "TEXT",
+              "isPrimaryKey" : false
+            }
+          },
+          "release_year" : {
+            "target" : {
+              "name" : "release_year",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "release_year",
+              "javaSqlType" : "DATE",
+              "databaseSpecificType" : "YEAR",
+              "isPrimaryKey" : false
+            }
+          },
+          "language_id" : {
+            "target" : {
+              "name" : "language_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "language_id",
+              "javaSqlType" : "TINYINT",
+              "databaseSpecificType" : "TINYINT UNSIGNED",
+              "isPrimaryKey" : false
+            }
+          },
+          "original_language_id" : {
+            "target" : {
+              "name" : "original_language_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "original_language_id",
+              "javaSqlType" : "TINYINT",
+              "databaseSpecificType" : "TINYINT UNSIGNED",
+              "isPrimaryKey" : false
+            }
+          },
+          "rental_duration" : {
+            "target" : {
+              "name" : "rental_duration",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "rental_duration",
+              "javaSqlType" : "TINYINT",
+              "databaseSpecificType" : "TINYINT UNSIGNED",
+              "isPrimaryKey" : false
+            }
+          },
+          "rental_rate" : {
+            "target" : {
+              "name" : "rental_rate",
+              "included" : true,
+              "type" : "DECIMAL",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "rental_rate",
+              "javaSqlType" : "DECIMAL",
+              "databaseSpecificType" : "DECIMAL",
+              "isPrimaryKey" : false
+            }
+          },
+          "length" : {
+            "target" : {
+              "name" : "length",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "length",
+              "javaSqlType" : "SMALLINT",
+              "databaseSpecificType" : "SMALLINT UNSIGNED",
+              "isPrimaryKey" : false
+            }
+          },
+          "replacement_cost" : {
+            "target" : {
+              "name" : "replacement_cost",
+              "included" : true,
+              "type" : "DECIMAL",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "replacement_cost",
+              "javaSqlType" : "DECIMAL",
+              "databaseSpecificType" : "DECIMAL",
+              "isPrimaryKey" : false
+            }
+          },
+          "rating" : {
+            "target" : {
+              "name" : "rating",
+              "included" : true,
+              "type" : "STRING",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "rating",
+              "javaSqlType" : "CHAR",
+              "databaseSpecificType" : "ENUM",
+              "isPrimaryKey" : false
+            }
+          },
+          "special_features" : {
+            "target" : {
+              "name" : "special_features",
+              "included" : true,
+              "type" : "STRING",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "special_features",
+              "javaSqlType" : "CHAR",
+              "databaseSpecificType" : "SET",
+              "isPrimaryKey" : false
+            }
+          },
+          "last_update" : {
+            "target" : {
+              "name" : "last_update",
+              "included" : true,
+              "type" : "STRING",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "last_update",
+              "javaSqlType" : "TIMESTAMP",
+              "databaseSpecificType" : "TIMESTAMP",
+              "isPrimaryKey" : false
+            }
+          }
+        },
+        "collectionId" : "efe00199-02b7-46c8-aa64-a792a2136d10",
+        "table" : "sakila.sakila.film"
+      },
+      "da7adf8f-99a0-4aeb-b50d-264e13e7a545" : {
+        "settings" : {
+          "type" : "NEW_DOCUMENT",
+          "notes" : null,
+          "embeddedPath" : null
+        },
+        "fields" : {
+          "store_id" : {
+            "target" : {
+              "name" : "_id.store_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "store_id",
+              "javaSqlType" : "TINYINT",
+              "databaseSpecificType" : "TINYINT UNSIGNED",
+              "isPrimaryKey" : true
+            }
+          },
+          "manager_staff_id" : {
+            "target" : {
+              "name" : "manager_staff_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "manager_staff_id",
+              "javaSqlType" : "TINYINT",
+              "databaseSpecificType" : "TINYINT UNSIGNED",
+              "isPrimaryKey" : false
+            }
+          },
+          "address_id" : {
+            "target" : {
+              "name" : "address_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "address_id",
+              "javaSqlType" : "SMALLINT",
+              "databaseSpecificType" : "SMALLINT UNSIGNED",
+              "isPrimaryKey" : false
+            }
+          },
+          "last_update" : {
+            "target" : {
+              "name" : "last_update",
+              "included" : true,
+              "type" : "STRING",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "last_update",
+              "javaSqlType" : "TIMESTAMP",
+              "databaseSpecificType" : "TIMESTAMP",
+              "isPrimaryKey" : false
+            }
+          }
+        },
+        "collectionId" : "b46f88d6-842c-433f-bd41-422633a373bd",
+        "table" : "sakila.sakila.store"
+      },
+      "9b90e499-a410-4e01-bdd1-a39a3d8fb74e" : {
+        "settings" : {
+          "type" : "NEW_DOCUMENT",
+          "notes" : null,
+          "embeddedPath" : null
+        },
+        "fields" : {
+          "inventory_id" : {
+            "target" : {
+              "name" : "_id.inventory_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "inventory_id",
+              "javaSqlType" : "INTEGER",
+              "databaseSpecificType" : "MEDIUMINT UNSIGNED",
+              "isPrimaryKey" : true
+            }
+          },
+          "film_id" : {
+            "target" : {
+              "name" : "film_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "film_id",
+              "javaSqlType" : "SMALLINT",
+              "databaseSpecificType" : "SMALLINT UNSIGNED",
+              "isPrimaryKey" : false
+            }
+          },
+          "store_id" : {
+            "target" : {
+              "name" : "store_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "store_id",
+              "javaSqlType" : "TINYINT",
+              "databaseSpecificType" : "TINYINT UNSIGNED",
+              "isPrimaryKey" : false
+            }
+          },
+          "last_update" : {
+            "target" : {
+              "name" : "last_update",
+              "included" : true,
+              "type" : "STRING",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "last_update",
+              "javaSqlType" : "TIMESTAMP",
+              "databaseSpecificType" : "TIMESTAMP",
+              "isPrimaryKey" : false
+            }
+          }
+        },
+        "collectionId" : "860a06ea-70fd-492c-8a04-cf8cab1afb06",
+        "table" : "sakila.sakila.inventory"
+      },
+      "669c59e6-0850-4a83-adb4-22e72b0a6214" : {
+        "settings" : {
+          "type" : "NEW_DOCUMENT",
+          "notes" : null,
+          "embeddedPath" : null
+        },
+        "fields" : {
+          "rental_id" : {
+            "target" : {
+              "name" : "_id.rental_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "rental_id",
+              "javaSqlType" : "INTEGER",
+              "databaseSpecificType" : "INT",
+              "isPrimaryKey" : true
+            }
+          },
+          "rental_date" : {
+            "target" : {
+              "name" : "rental_date",
+              "included" : true,
+              "type" : "DATE",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "rental_date",
+              "javaSqlType" : "TIMESTAMP",
+              "databaseSpecificType" : "DATETIME",
+              "isPrimaryKey" : false
+            }
+          },
+          "inventory_id" : {
+            "target" : {
+              "name" : "inventory_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "inventory_id",
+              "javaSqlType" : "INTEGER",
+              "databaseSpecificType" : "MEDIUMINT UNSIGNED",
+              "isPrimaryKey" : false
+            }
+          },
+          "customer_id" : {
+            "target" : {
+              "name" : "customer_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "customer_id",
+              "javaSqlType" : "SMALLINT",
+              "databaseSpecificType" : "SMALLINT UNSIGNED",
+              "isPrimaryKey" : false
+            }
+          },
+          "return_date" : {
+            "target" : {
+              "name" : "return_date",
+              "included" : true,
+              "type" : "DATE",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "return_date",
+              "javaSqlType" : "TIMESTAMP",
+              "databaseSpecificType" : "DATETIME",
+              "isPrimaryKey" : false
+            }
+          },
+          "staff_id" : {
+            "target" : {
+              "name" : "staff_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "staff_id",
+              "javaSqlType" : "TINYINT",
+              "databaseSpecificType" : "TINYINT UNSIGNED",
+              "isPrimaryKey" : false
+            }
+          },
+          "last_update" : {
+            "target" : {
+              "name" : "last_update",
+              "included" : true,
+              "type" : "STRING",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "last_update",
+              "javaSqlType" : "TIMESTAMP",
+              "databaseSpecificType" : "TIMESTAMP",
+              "isPrimaryKey" : false
+            }
+          }
+        },
+        "collectionId" : "675a0935-4cd5-44fb-a7c0-9a125df47c2f",
+        "table" : "sakila.sakila.rental"
+      },
+      "d47eb214-20e2-4534-a592-26e4cb7cf6d2" : {
+        "settings" : {
+          "type" : "NEW_DOCUMENT",
+          "notes" : null,
+          "embeddedPath" : null
+        },
+        "fields" : {
+          "actor_id" : {
+            "target" : {
+              "name" : "_id.actor_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "actor_id",
+              "javaSqlType" : "SMALLINT",
+              "databaseSpecificType" : "SMALLINT UNSIGNED",
+              "isPrimaryKey" : true
+            }
+          },
+          "first_name" : {
+            "target" : {
+              "name" : "first_name",
+              "included" : true,
+              "type" : "STRING",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "first_name",
+              "javaSqlType" : "VARCHAR",
+              "databaseSpecificType" : "VARCHAR",
+              "isPrimaryKey" : false
+            }
+          },
+          "last_name" : {
+            "target" : {
+              "name" : "last_name",
+              "included" : true,
+              "type" : "STRING",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "last_name",
+              "javaSqlType" : "VARCHAR",
+              "databaseSpecificType" : "VARCHAR",
+              "isPrimaryKey" : false
+            }
+          },
+          "last_update" : {
+            "target" : {
+              "name" : "last_update",
+              "included" : true,
+              "type" : "STRING",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "last_update",
+              "javaSqlType" : "TIMESTAMP",
+              "databaseSpecificType" : "TIMESTAMP",
+              "isPrimaryKey" : false
+            }
+          }
+        },
+        "collectionId" : "6b64c0ad-2372-483c-8d67-d7f09ebae0f0",
+        "table" : "sakila.sakila.actor"
+      },
+      "9d366b82-b10d-41eb-9891-a277eba363e0" : {
+        "settings" : {
+          "type" : "NEW_DOCUMENT",
+          "notes" : null,
+          "embeddedPath" : null
+        },
+        "fields" : {
+          "film_id" : {
+            "target" : {
+              "name" : "_id.film_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "film_id",
+              "javaSqlType" : "SMALLINT",
+              "databaseSpecificType" : "SMALLINT",
+              "isPrimaryKey" : true
+            }
+          },
+          "title" : {
+            "target" : {
+              "name" : "title",
+              "included" : true,
+              "type" : "STRING",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "title",
+              "javaSqlType" : "VARCHAR",
+              "databaseSpecificType" : "VARCHAR",
+              "isPrimaryKey" : false
+            }
+          },
+          "description" : {
+            "target" : {
+              "name" : "description",
+              "included" : true,
+              "type" : "STRING",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "description",
+              "javaSqlType" : "LONGVARCHAR",
+              "databaseSpecificType" : "TEXT",
+              "isPrimaryKey" : false
+            }
+          }
+        },
+        "collectionId" : "6cfb781e-ed6a-4830-a7e0-3ab2c18836b2",
+        "table" : "sakila.sakila.film_text"
+      },
+      "6fe13fc7-d560-4ac8-ae34-ced33370edfc" : {
+        "settings" : {
+          "type" : "NEW_DOCUMENT",
+          "notes" : null,
+          "embeddedPath" : null
+        },
+        "fields" : {
+          "payment_id" : {
+            "target" : {
+              "name" : "_id.payment_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "payment_id",
+              "javaSqlType" : "SMALLINT",
+              "databaseSpecificType" : "SMALLINT UNSIGNED",
+              "isPrimaryKey" : true
+            }
+          },
+          "customer_id" : {
+            "target" : {
+              "name" : "customer_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "customer_id",
+              "javaSqlType" : "SMALLINT",
+              "databaseSpecificType" : "SMALLINT UNSIGNED",
+              "isPrimaryKey" : false
+            }
+          },
+          "staff_id" : {
+            "target" : {
+              "name" : "staff_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "staff_id",
+              "javaSqlType" : "TINYINT",
+              "databaseSpecificType" : "TINYINT UNSIGNED",
+              "isPrimaryKey" : false
+            }
+          },
+          "rental_id" : {
+            "target" : {
+              "name" : "rental_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "rental_id",
+              "javaSqlType" : "INTEGER",
+              "databaseSpecificType" : "INT",
+              "isPrimaryKey" : false
+            }
+          },
+          "amount" : {
+            "target" : {
+              "name" : "amount",
+              "included" : true,
+              "type" : "DECIMAL",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "amount",
+              "javaSqlType" : "DECIMAL",
+              "databaseSpecificType" : "DECIMAL",
+              "isPrimaryKey" : false
+            }
+          },
+          "payment_date" : {
+            "target" : {
+              "name" : "payment_date",
+              "included" : true,
+              "type" : "DATE",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "payment_date",
+              "javaSqlType" : "TIMESTAMP",
+              "databaseSpecificType" : "DATETIME",
+              "isPrimaryKey" : false
+            }
+          },
+          "last_update" : {
+            "target" : {
+              "name" : "last_update",
+              "included" : true,
+              "type" : "STRING",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "last_update",
+              "javaSqlType" : "TIMESTAMP",
+              "databaseSpecificType" : "TIMESTAMP",
+              "isPrimaryKey" : false
+            }
+          }
+        },
+        "collectionId" : "8fc442d6-b0eb-44c4-87aa-2f553bfcd160",
+        "table" : "sakila.sakila.payment"
+      },
+      "286f7b26-00a3-4f55-a481-983ffb31077e" : {
+        "settings" : {
+          "type" : "NEW_DOCUMENT",
+          "notes" : null,
+          "embeddedPath" : null
+        },
+        "fields" : {
+          "category_id" : {
+            "target" : {
+              "name" : "_id.category_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "category_id",
+              "javaSqlType" : "TINYINT",
+              "databaseSpecificType" : "TINYINT UNSIGNED",
+              "isPrimaryKey" : true
+            }
+          },
+          "name" : {
+            "target" : {
+              "name" : "name",
+              "included" : true,
+              "type" : "STRING",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "name",
+              "javaSqlType" : "VARCHAR",
+              "databaseSpecificType" : "VARCHAR",
+              "isPrimaryKey" : false
+            }
+          },
+          "last_update" : {
+            "target" : {
+              "name" : "last_update",
+              "included" : true,
+              "type" : "STRING",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "last_update",
+              "javaSqlType" : "TIMESTAMP",
+              "databaseSpecificType" : "TIMESTAMP",
+              "isPrimaryKey" : false
+            }
+          }
+        },
+        "collectionId" : "24e95982-1d9d-43b0-950c-7246410a786b",
+        "table" : "sakila.sakila.category"
+      },
+      "aa427b30-814b-4f69-9720-bdf000544804" : {
+        "settings" : {
+          "type" : "NEW_DOCUMENT",
+          "notes" : null,
+          "embeddedPath" : null
+        },
+        "fields" : {
+          "customer_id" : {
+            "target" : {
+              "name" : "_id.customer_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "customer_id",
+              "javaSqlType" : "SMALLINT",
+              "databaseSpecificType" : "SMALLINT UNSIGNED",
+              "isPrimaryKey" : true
+            }
+          },
+          "store_id" : {
+            "target" : {
+              "name" : "store_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "store_id",
+              "javaSqlType" : "TINYINT",
+              "databaseSpecificType" : "TINYINT UNSIGNED",
+              "isPrimaryKey" : false
+            }
+          },
+          "first_name" : {
+            "target" : {
+              "name" : "first_name",
+              "included" : true,
+              "type" : "STRING",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "first_name",
+              "javaSqlType" : "VARCHAR",
+              "databaseSpecificType" : "VARCHAR",
+              "isPrimaryKey" : false
+            }
+          },
+          "last_name" : {
+            "target" : {
+              "name" : "last_name",
+              "included" : true,
+              "type" : "STRING",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "last_name",
+              "javaSqlType" : "VARCHAR",
+              "databaseSpecificType" : "VARCHAR",
+              "isPrimaryKey" : false
+            }
+          },
+          "email" : {
+            "target" : {
+              "name" : "email",
+              "included" : true,
+              "type" : "STRING",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "email",
+              "javaSqlType" : "VARCHAR",
+              "databaseSpecificType" : "VARCHAR",
+              "isPrimaryKey" : false
+            }
+          },
+          "address_id" : {
+            "target" : {
+              "name" : "address_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "address_id",
+              "javaSqlType" : "SMALLINT",
+              "databaseSpecificType" : "SMALLINT UNSIGNED",
+              "isPrimaryKey" : false
+            }
+          },
+          "active" : {
+            "target" : {
+              "name" : "active",
+              "included" : true,
+              "type" : "BOOL",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "active",
+              "javaSqlType" : "BIT",
+              "databaseSpecificType" : "BIT",
+              "isPrimaryKey" : false
+            }
+          },
+          "create_date" : {
+            "target" : {
+              "name" : "create_date",
+              "included" : true,
+              "type" : "DATE",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "create_date",
+              "javaSqlType" : "TIMESTAMP",
+              "databaseSpecificType" : "DATETIME",
+              "isPrimaryKey" : false
+            }
+          },
+          "last_update" : {
+            "target" : {
+              "name" : "last_update",
+              "included" : true,
+              "type" : "STRING",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "last_update",
+              "javaSqlType" : "TIMESTAMP",
+              "databaseSpecificType" : "TIMESTAMP",
+              "isPrimaryKey" : false
+            }
+          }
+        },
+        "collectionId" : "949437d4-a6f4-4a7e-bd96-5d9fc591dd7c",
+        "table" : "sakila.sakila.customer"
+      },
+      "0ab5a923-ed10-4fe7-a28a-f46564e63b84" : {
+        "settings" : {
+          "type" : "EMBEDDED_DOCUMENT_ARRAY",
+          "notes" : "",
+          "embeddedPath" : "rentals"
+        },
+        "fields" : {
+          "rental_id" : {
+            "target" : {
+              "name" : "rental_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "rental_id",
+              "javaSqlType" : "INTEGER",
+              "databaseSpecificType" : "INT",
+              "isPrimaryKey" : true
+            }
+          },
+          "rental_date" : {
+            "target" : {
+              "name" : "rental_date",
+              "included" : true,
+              "type" : "DATE",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "rental_date",
+              "javaSqlType" : "TIMESTAMP",
+              "databaseSpecificType" : "DATETIME",
+              "isPrimaryKey" : false
+            }
+          },
+          "inventory_id" : {
+            "target" : {
+              "name" : "inventory_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "inventory_id",
+              "javaSqlType" : "INTEGER",
+              "databaseSpecificType" : "MEDIUMINT UNSIGNED",
+              "isPrimaryKey" : false
+            }
+          },
+          "customer_id" : {
+            "target" : {
+              "name" : "customer_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "customer_id",
+              "javaSqlType" : "SMALLINT",
+              "databaseSpecificType" : "SMALLINT UNSIGNED",
+              "isPrimaryKey" : false
+            }
+          },
+          "return_date" : {
+            "target" : {
+              "name" : "return_date",
+              "included" : true,
+              "type" : "DATE",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "return_date",
+              "javaSqlType" : "TIMESTAMP",
+              "databaseSpecificType" : "DATETIME",
+              "isPrimaryKey" : false
+            }
+          },
+          "staff_id" : {
+            "target" : {
+              "name" : "staff_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "staff_id",
+              "javaSqlType" : "TINYINT",
+              "databaseSpecificType" : "TINYINT UNSIGNED",
+              "isPrimaryKey" : false
+            }
+          },
+          "last_update" : {
+            "target" : {
+              "name" : "last_update",
+              "included" : true,
+              "type" : "STRING",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "last_update",
+              "javaSqlType" : "TIMESTAMP",
+              "databaseSpecificType" : "TIMESTAMP",
+              "isPrimaryKey" : false
+            }
+          }
+        },
+        "collectionId" : "860a06ea-70fd-492c-8a04-cf8cab1afb06",
+        "table" : "sakila.sakila.rental"
+      },
+      "458fbcd0-5229-49e4-9fd9-0d6c99a82f22" : {
+        "settings" : {
+          "type" : "EMBEDDED_DOCUMENT_ARRAY",
+          "notes" : "",
+          "embeddedPath" : "inventories"
+        },
+        "fields" : {
+          "inventory_id" : {
+            "target" : {
+              "name" : "inventory_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "inventory_id",
+              "javaSqlType" : "INTEGER",
+              "databaseSpecificType" : "MEDIUMINT UNSIGNED",
+              "isPrimaryKey" : true
+            }
+          },
+          "film_id" : {
+            "target" : {
+              "name" : "film_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "film_id",
+              "javaSqlType" : "SMALLINT",
+              "databaseSpecificType" : "SMALLINT UNSIGNED",
+              "isPrimaryKey" : false
+            }
+          },
+          "store_id" : {
+            "target" : {
+              "name" : "store_id",
+              "included" : true,
+              "type" : "INTEGER",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "store_id",
+              "javaSqlType" : "TINYINT",
+              "databaseSpecificType" : "TINYINT UNSIGNED",
+              "isPrimaryKey" : false
+            }
+          },
+          "last_update" : {
+            "target" : {
+              "name" : "last_update",
+              "included" : true,
+              "type" : "STRING",
+              "mappedParentField" : null
+            },
+            "source" : {
+              "name" : "last_update",
+              "javaSqlType" : "TIMESTAMP",
+              "databaseSpecificType" : "TIMESTAMP",
+              "isPrimaryKey" : false
+            }
+          }
+        },
+        "collectionId" : "efe00199-02b7-46c8-aa64-a792a2136d10",
+        "table" : "sakila.sakila.inventory"
+      }
+    },
+    "relationships" : {
+      "tables" : {
+        "sakila.sakila.film_category" : {
+          "mappings" : [ "d9876627-dad7-4327-96ee-beec082125ee" ]
+        },
+        "sakila.sakila.country" : {
+          "mappings" : [ "8adbe561-b447-4548-a941-32fa67dcd7b1" ]
+        },
+        "sakila.sakila.address" : {
+          "mappings" : [ "b7c76e06-7ecb-4521-a7f2-bf5e0bfde31a" ]
+        },
+        "sakila.sakila.city" : {
+          "mappings" : [ "f0dddbb7-beaf-4a61-998b-55a0dbd5eff5" ]
+        },
+        "sakila.sakila.film_actor" : {
+          "mappings" : [ "59497e7c-6ffe-4f6b-8178-f6ab7bc991d0" ]
+        },
+        "sakila.sakila.language" : {
+          "mappings" : [ "c1828097-5723-4dd9-b66f-860151654028" ]
+        },
+        "sakila.sakila.staff" : {
+          "mappings" : [ "20ebb891-903b-4517-83c9-d7f7d029b4eb" ]
+        },
+        "sakila.sakila.film" : {
+          "mappings" : [ "98b5942c-d9d2-4a82-a172-a2b9667fff9c" ]
+        },
+        "sakila.sakila.store" : {
+          "mappings" : [ "da7adf8f-99a0-4aeb-b50d-264e13e7a545" ]
+        },
+        "sakila.sakila.inventory" : {
+          "mappings" : [ "9b90e499-a410-4e01-bdd1-a39a3d8fb74e", "458fbcd0-5229-49e4-9fd9-0d6c99a82f22" ]
+        },
+        "sakila.sakila.rental" : {
+          "mappings" : [ "669c59e6-0850-4a83-adb4-22e72b0a6214", "0ab5a923-ed10-4fe7-a28a-f46564e63b84" ]
+        },
+        "sakila.sakila.actor" : {
+          "mappings" : [ "d47eb214-20e2-4534-a592-26e4cb7cf6d2" ]
+        },
+        "sakila.sakila.film_text" : {
+          "mappings" : [ "9d366b82-b10d-41eb-9891-a277eba363e0" ]
+        },
+        "sakila.sakila.payment" : {
+          "mappings" : [ "6fe13fc7-d560-4ac8-ae34-ced33370edfc" ]
+        },
+        "sakila.sakila.category" : {
+          "mappings" : [ "286f7b26-00a3-4f55-a481-983ffb31077e" ]
+        },
+        "sakila.sakila.customer" : {
+          "mappings" : [ "aa427b30-814b-4f69-9720-bdf000544804" ]
+        }
+      },
+      "collections" : {
+        "36f6e69c-fba6-40a2-8cd3-30b48b9f11a4" : {
+          "mappings" : [ "d9876627-dad7-4327-96ee-beec082125ee" ]
+        },
+        "e4dccdbb-565b-45cf-934d-f276a80504b6" : {
+          "mappings" : [ "8adbe561-b447-4548-a941-32fa67dcd7b1" ]
+        },
+        "9c565310-1967-44e3-805e-7f66e66449ab" : {
+          "mappings" : [ "b7c76e06-7ecb-4521-a7f2-bf5e0bfde31a" ]
+        },
+        "fe2aed88-ce5e-4eb0-9228-12a85fa0f56b" : {
+          "mappings" : [ "f0dddbb7-beaf-4a61-998b-55a0dbd5eff5" ]
+        },
+        "139c930f-d682-45ea-a2dc-ba689ed6ccc8" : {
+          "mappings" : [ "59497e7c-6ffe-4f6b-8178-f6ab7bc991d0" ]
+        },
+        "8c897e3a-9987-49e2-8724-3635333c28c0" : {
+          "mappings" : [ "c1828097-5723-4dd9-b66f-860151654028" ]
+        },
+        "c93ffbf9-0fc4-47d3-9f01-3c4357315968" : {
+          "mappings" : [ "20ebb891-903b-4517-83c9-d7f7d029b4eb" ]
+        },
+        "efe00199-02b7-46c8-aa64-a792a2136d10" : {
+          "mappings" : [ "98b5942c-d9d2-4a82-a172-a2b9667fff9c", "458fbcd0-5229-49e4-9fd9-0d6c99a82f22" ]
+        },
+        "b46f88d6-842c-433f-bd41-422633a373bd" : {
+          "mappings" : [ "da7adf8f-99a0-4aeb-b50d-264e13e7a545" ]
+        },
+        "860a06ea-70fd-492c-8a04-cf8cab1afb06" : {
+          "mappings" : [ "9b90e499-a410-4e01-bdd1-a39a3d8fb74e", "0ab5a923-ed10-4fe7-a28a-f46564e63b84" ]
+        },
+        "675a0935-4cd5-44fb-a7c0-9a125df47c2f" : {
+          "mappings" : [ "669c59e6-0850-4a83-adb4-22e72b0a6214" ]
+        },
+        "6b64c0ad-2372-483c-8d67-d7f09ebae0f0" : {
+          "mappings" : [ "d47eb214-20e2-4534-a592-26e4cb7cf6d2" ]
+        },
+        "6cfb781e-ed6a-4830-a7e0-3ab2c18836b2" : {
+          "mappings" : [ "9d366b82-b10d-41eb-9891-a277eba363e0" ]
+        },
+        "8fc442d6-b0eb-44c4-87aa-2f553bfcd160" : {
+          "mappings" : [ "6fe13fc7-d560-4ac8-ae34-ced33370edfc" ]
+        },
+        "24e95982-1d9d-43b0-950c-7246410a786b" : {
+          "mappings" : [ "286f7b26-00a3-4f55-a481-983ffb31077e" ]
+        },
+        "949437d4-a6f4-4a7e-bd96-5d9fc591dd7c" : {
+          "mappings" : [ "aa427b30-814b-4f69-9720-bdf000544804" ]
+        }
+      },
+      "mappings" : {
+        "d9876627-dad7-4327-96ee-beec082125ee" : {
+          "children" : [ ]
+        },
+        "8adbe561-b447-4548-a941-32fa67dcd7b1" : {
+          "children" : [ ]
+        },
+        "b7c76e06-7ecb-4521-a7f2-bf5e0bfde31a" : {
+          "children" : [ ]
+        },
+        "f0dddbb7-beaf-4a61-998b-55a0dbd5eff5" : {
+          "children" : [ ]
+        },
+        "59497e7c-6ffe-4f6b-8178-f6ab7bc991d0" : {
+          "children" : [ ]
+        },
+        "c1828097-5723-4dd9-b66f-860151654028" : {
+          "children" : [ ]
+        },
+        "20ebb891-903b-4517-83c9-d7f7d029b4eb" : {
+          "children" : [ ]
+        },
+        "98b5942c-d9d2-4a82-a172-a2b9667fff9c" : {
+          "children" : [ "458fbcd0-5229-49e4-9fd9-0d6c99a82f22" ]
+        },
+        "da7adf8f-99a0-4aeb-b50d-264e13e7a545" : {
+          "children" : [ ]
+        },
+        "9b90e499-a410-4e01-bdd1-a39a3d8fb74e" : {
+          "children" : [ "0ab5a923-ed10-4fe7-a28a-f46564e63b84" ]
+        },
+        "669c59e6-0850-4a83-adb4-22e72b0a6214" : {
+          "children" : [ ]
+        },
+        "d47eb214-20e2-4534-a592-26e4cb7cf6d2" : {
+          "children" : [ ]
+        },
+        "9d366b82-b10d-41eb-9891-a277eba363e0" : {
+          "children" : [ ]
+        },
+        "6fe13fc7-d560-4ac8-ae34-ced33370edfc" : {
+          "children" : [ ]
+        },
+        "286f7b26-00a3-4f55-a481-983ffb31077e" : {
+          "children" : [ ]
+        },
+        "aa427b30-814b-4f69-9720-bdf000544804" : {
+          "children" : [ ]
+        },
+        "0ab5a923-ed10-4fe7-a28a-f46564e63b84" : {
+          "children" : [ ]
+        },
+        "458fbcd0-5229-49e4-9fd9-0d6c99a82f22" : {
+          "children" : [ ]
+        }
+      }
+    },
+    "diagrams" : {
+      "tabs" : [ {
+        "relational" : {
+          "nodes" : [ {
+            "id" : "sakila.sakila.film_category",
+            "type" : "entityCard",
+            "position" : {
+              "x" : 316.6666666666667,
+              "y" : 1110
+            },
+            "targetPosition" : null,
+            "sourcePosition" : null,
+            "width" : 244,
+            "height" : 98
+          }, {
+            "id" : "sakila.sakila.country",
+            "type" : "entityCard",
+            "position" : {
+              "x" : 1619.4666666666667,
+              "y" : 12
+            },
+            "targetPosition" : null,
+            "sourcePosition" : null,
+            "width" : 244,
+            "height" : 98
+          }, {
+            "id" : "sakila.sakila.address",
+            "type" : "entityCard",
+            "position" : {
+              "x" : 1619.4666666666667,
+              "y" : 426
+            },
+            "targetPosition" : null,
+            "sourcePosition" : null,
+            "width" : 244,
+            "height" : 206
+          }, {
+            "id" : "sakila.sakila.city",
+            "type" : "entityCard",
+            "position" : {
+              "x" : 1619.4666666666667,
+              "y" : 210
+            },
+            "targetPosition" : null,
+            "sourcePosition" : null,
+            "width" : 244,
+            "height" : 116
+          }, {
+            "id" : "sakila.sakila.film_actor",
+            "type" : "entityCard",
+            "position" : {
+              "x" : 660.6666666666667,
+              "y" : 1110
+            },
+            "targetPosition" : null,
+            "sourcePosition" : null,
+            "width" : 244,
+            "height" : 98
+          }, {
+            "id" : "sakila.sakila.language",
+            "type" : "entityCard",
+            "position" : {
+              "x" : 620,
+              "y" : 534
+            },
+            "targetPosition" : null,
+            "sourcePosition" : null,
+            "width" : 244,
+            "height" : 98
+          }, {
+            "id" : "sakila.sakila.staff",
+            "type" : "entityCard",
+            "position" : {
+              "x" : 1692.6666666666667,
+              "y" : 1110
+            },
+            "targetPosition" : null,
+            "sourcePosition" : null,
+            "width" : 244,
+            "height" : 242
+          }, {
+            "id" : "sakila.sakila.film",
+            "type" : "entityCard",
+            "position" : {
+              "x" : 620,
+              "y" : 732
+            },
+            "targetPosition" : null,
+            "sourcePosition" : null,
+            "width" : 244,
+            "height" : 278
+          }, {
+            "id" : "sakila.sakila.store",
+            "type" : "entityCard",
+            "position" : {
+              "x" : 1619.4666666666667,
+              "y" : 861.6
+            },
+            "targetPosition" : null,
+            "sourcePosition" : null,
+            "width" : 244,
+            "height" : 116
+          }, {
+            "id" : "sakila.sakila.inventory",
+            "type" : "entityCard",
+            "position" : {
+              "x" : 1004.6666666666667,
+              "y" : 1152
+            },
+            "targetPosition" : null,
+            "sourcePosition" : null,
+            "width" : 244,
+            "height" : 116
+          }, {
+            "id" : "sakila.sakila.rental",
+            "type" : "entityCard",
+            "position" : {
+              "x" : 1065.6666666666667,
+              "y" : 1452
+            },
+            "targetPosition" : null,
+            "sourcePosition" : null,
+            "width" : 244,
+            "height" : 170
+          }, {
+            "id" : "sakila.sakila.actor",
+            "type" : "entityCard",
+            "position" : {
+              "x" : 964,
+              "y" : 894
+            },
+            "targetPosition" : null,
+            "sourcePosition" : null,
+            "width" : 244,
+            "height" : 116
+          }, {
+            "id" : "sakila.sakila.film_text",
+            "type" : "entityCard",
+            "position" : {
+              "x" : 12,
+              "y" : 12
+            },
+            "targetPosition" : null,
+            "sourcePosition" : null,
+            "width" : 244,
+            "height" : 98
+          }, {
+            "id" : "sakila.sakila.payment",
+            "type" : "entityCard",
+            "position" : {
+              "x" : 1126.6666666666667,
+              "y" : 1722
+            },
+            "targetPosition" : null,
+            "sourcePosition" : null,
+            "width" : 244,
+            "height" : 170
+          }, {
+            "id" : "sakila.sakila.category",
+            "type" : "entityCard",
+            "position" : {
+              "x" : 276,
+              "y" : 912
+            },
+            "targetPosition" : null,
+            "sourcePosition" : null,
+            "width" : 244,
+            "height" : 98
+          }, {
+            "id" : "sakila.sakila.customer",
+            "type" : "entityCard",
+            "position" : {
+              "x" : 1348.6666666666667,
+              "y" : 1128
+            },
+            "targetPosition" : null,
+            "sourcePosition" : null,
+            "width" : 244,
+            "height" : 206
+          } ],
+          "edges" : [ {
+            "id" : "fk_film_category_category-sakila.sakila.film_category",
+            "source" : "sakila.sakila.category",
+            "target" : "sakila.sakila.film_category",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "fk_film_category_film-sakila.sakila.film_category",
+            "source" : "sakila.sakila.film",
+            "target" : "sakila.sakila.film_category",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "fk_address_city-sakila.sakila.address",
+            "source" : "sakila.sakila.city",
+            "target" : "sakila.sakila.address",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "fk_city_country-sakila.sakila.city",
+            "source" : "sakila.sakila.country",
+            "target" : "sakila.sakila.city",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "fk_film_actor_actor-sakila.sakila.film_actor",
+            "source" : "sakila.sakila.actor",
+            "target" : "sakila.sakila.film_actor",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "fk_film_actor_film-sakila.sakila.film_actor",
+            "source" : "sakila.sakila.film",
+            "target" : "sakila.sakila.film_actor",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "fk_staff_store-sakila.sakila.staff",
+            "source" : "sakila.sakila.store",
+            "target" : "sakila.sakila.staff",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "fk_staff_address-sakila.sakila.staff",
+            "source" : "sakila.sakila.address",
+            "target" : "sakila.sakila.staff",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "fk_film_language-sakila.sakila.film",
+            "source" : "sakila.sakila.language",
+            "target" : "sakila.sakila.film",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "fk_film_language_original-sakila.sakila.film",
+            "source" : "sakila.sakila.language",
+            "target" : "sakila.sakila.film",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "fk_store_staff-sakila.sakila.store",
+            "source" : "sakila.sakila.staff",
+            "target" : "sakila.sakila.store",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_ONE"
+          }, {
+            "id" : "fk_store_address-sakila.sakila.store",
+            "source" : "sakila.sakila.address",
+            "target" : "sakila.sakila.store",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "fk_inventory_store-sakila.sakila.inventory",
+            "source" : "sakila.sakila.store",
+            "target" : "sakila.sakila.inventory",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "fk_inventory_film-sakila.sakila.inventory",
+            "source" : "sakila.sakila.film",
+            "target" : "sakila.sakila.inventory",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "fk_rental_inventory-sakila.sakila.rental",
+            "source" : "sakila.sakila.inventory",
+            "target" : "sakila.sakila.rental",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "fk_rental_staff-sakila.sakila.rental",
+            "source" : "sakila.sakila.staff",
+            "target" : "sakila.sakila.rental",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "fk_rental_customer-sakila.sakila.rental",
+            "source" : "sakila.sakila.customer",
+            "target" : "sakila.sakila.rental",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "fk_payment_staff-sakila.sakila.payment",
+            "source" : "sakila.sakila.staff",
+            "target" : "sakila.sakila.payment",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "fk_payment_customer-sakila.sakila.payment",
+            "source" : "sakila.sakila.customer",
+            "target" : "sakila.sakila.payment",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "fk_payment_rental-sakila.sakila.payment",
+            "source" : "sakila.sakila.rental",
+            "target" : "sakila.sakila.payment",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "fk_customer_store-sakila.sakila.customer",
+            "source" : "sakila.sakila.store",
+            "target" : "sakila.sakila.customer",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "fk_customer_address-sakila.sakila.customer",
+            "source" : "sakila.sakila.address",
+            "target" : "sakila.sakila.customer",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          } ]
+        },
+        "collection" : {
+          "nodes" : [ {
+            "id" : "film_category",
+            "type" : "entityCard",
+            "position" : {
+              "x" : 316.6666666666667,
+              "y" : 1182
+            },
+            "targetPosition" : null,
+            "sourcePosition" : null,
+            "width" : 244,
+            "height" : 116
+          }, {
+            "id" : "country",
+            "type" : "entityCard",
+            "position" : {
+              "x" : 1619.4666666666667,
+              "y" : 12
+            },
+            "targetPosition" : null,
+            "sourcePosition" : null,
+            "width" : 244,
+            "height" : 116
+          }, {
+            "id" : "address",
+            "type" : "entityCard",
+            "position" : {
+              "x" : 1619.4666666666667,
+              "y" : 462
+            },
+            "targetPosition" : null,
+            "sourcePosition" : null,
+            "width" : 244,
+            "height" : 224
+          }, {
+            "id" : "city",
+            "type" : "entityCard",
+            "position" : {
+              "x" : 1619.4666666666667,
+              "y" : 228
+            },
+            "targetPosition" : null,
+            "sourcePosition" : null,
+            "width" : 244,
+            "height" : 134
+          }, {
+            "id" : "film_actor",
+            "type" : "entityCard",
+            "position" : {
+              "x" : 660.6666666666667,
+              "y" : 1182
+            },
+            "targetPosition" : null,
+            "sourcePosition" : null,
+            "width" : 244,
+            "height" : 116
+          }, {
+            "id" : "language",
+            "type" : "entityCard",
+            "position" : {
+              "x" : 620,
+              "y" : 570
+            },
+            "targetPosition" : null,
+            "sourcePosition" : null,
+            "width" : 244,
+            "height" : 116
+          }, {
+            "id" : "staff",
+            "type" : "entityCard",
+            "position" : {
+              "x" : 1692.6666666666667,
+              "y" : 1182
+            },
+            "targetPosition" : null,
+            "sourcePosition" : null,
+            "width" : 244,
+            "height" : 260
+          }, {
+            "id" : "film",
+            "type" : "entityCard",
+            "position" : {
+              "x" : 620,
+              "y" : 786
+            },
+            "targetPosition" : null,
+            "sourcePosition" : null,
+            "width" : 244,
+            "height" : 386
+          }, {
+            "id" : "store",
+            "type" : "entityCard",
+            "position" : {
+              "x" : 1619.4666666666667,
+              "y" : 915.6
+            },
+            "targetPosition" : null,
+            "sourcePosition" : null,
+            "width" : 244,
+            "height" : 134
+          }, {
+            "id" : "inventory",
+            "type" : "entityCard",
+            "position" : {
+              "x" : 1004.6666666666667,
+              "y" : 1224
+            },
+            "targetPosition" : null,
+            "sourcePosition" : null,
+            "width" : 244,
+            "height" : 278
+          }, {
+            "id" : "rental",
+            "type" : "entityCard",
+            "position" : {
+              "x" : 1065.6666666666667,
+              "y" : 1542
+            },
+            "targetPosition" : null,
+            "sourcePosition" : null,
+            "width" : 244,
+            "height" : 188
+          }, {
+            "id" : "actor",
+            "type" : "entityCard",
+            "position" : {
+              "x" : 964,
+              "y" : 948
+            },
+            "targetPosition" : null,
+            "sourcePosition" : null,
+            "width" : 244,
+            "height" : 134
+          }, {
+            "id" : "film_text",
+            "type" : "entityCard",
+            "position" : {
+              "x" : 12,
+              "y" : 12
+            },
+            "targetPosition" : null,
+            "sourcePosition" : null,
+            "width" : 244,
+            "height" : 116
+          }, {
+            "id" : "payment",
+            "type" : "entityCard",
+            "position" : {
+              "x" : 1126.6666666666667,
+              "y" : 1830
+            },
+            "targetPosition" : null,
+            "sourcePosition" : null,
+            "width" : 244,
+            "height" : 188
+          }, {
+            "id" : "category",
+            "type" : "entityCard",
+            "position" : {
+              "x" : 276,
+              "y" : 966
+            },
+            "targetPosition" : null,
+            "sourcePosition" : null,
+            "width" : 244,
+            "height" : 116
+          }, {
+            "id" : "customer",
+            "type" : "entityCard",
+            "position" : {
+              "x" : 1348.6666666666667,
+              "y" : 1200
+            },
+            "targetPosition" : null,
+            "sourcePosition" : null,
+            "width" : 244,
+            "height" : 224
+          } ],
+          "edges" : [ {
+            "id" : "02649340-8cb5-4563-a23c-84d59ffda230",
+            "source" : "category",
+            "target" : "film_category",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "cc5750b9-3f59-4853-8dc8-fb111ca5193c",
+            "source" : "film",
+            "target" : "film_category",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "a6cf1527-4b54-472c-8fbc-fd640acc52b1",
+            "source" : "city",
+            "target" : "address",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "2504720e-041b-4b67-8d97-e8988856ae25",
+            "source" : "country",
+            "target" : "city",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "4c276bd9-b483-4922-900d-bfe225fcd76c",
+            "source" : "actor",
+            "target" : "film_actor",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "7a2b8818-7510-4e3d-bf85-30a365626328",
+            "source" : "film",
+            "target" : "film_actor",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "df572aa2-ff6b-4455-a503-8115bbeb175b",
+            "source" : "store",
+            "target" : "staff",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "33fe6ac9-dcf9-43af-a01d-e8ed0b8bfbc8",
+            "source" : "address",
+            "target" : "staff",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "d60817f6-2db7-4b02-81c8-6408f77467de",
+            "source" : "language",
+            "target" : "film",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "b88a8e9c-8eb7-4202-b908-8092e3884adc",
+            "source" : "language",
+            "target" : "film",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "d74c02b2-3f98-4af6-9db7-ffb4ce5ea945",
+            "source" : "store",
+            "target" : "film",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "c2af2875-b018-4621-805b-9c771a7a38ec",
+            "source" : "store",
+            "target" : "film",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "7c6c2691-4ee1-4f9d-b4a2-699c52bd9fc5",
+            "source" : "staff",
+            "target" : "store",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_ONE"
+          }, {
+            "id" : "9afd726e-642f-499c-aa99-f0b4a1479313",
+            "source" : "address",
+            "target" : "store",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "65111c60-e139-4890-bc6d-e481231aa12c",
+            "source" : "store",
+            "target" : "inventory",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "efe0422d-fa8b-42a3-bb6d-f82a6972e3f0",
+            "source" : "film",
+            "target" : "inventory",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "f7bbabc6-59e1-4fc9-9dd7-07ed30563c58",
+            "source" : "film",
+            "target" : "inventory",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "ca04ce37-dfbc-442b-afcf-f749054752be",
+            "source" : "staff",
+            "target" : "inventory",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "227438e2-261a-411e-a32c-070b5d55026a",
+            "source" : "customer",
+            "target" : "inventory",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "0793e2b8-8e9a-4212-b9bb-6f531c809779",
+            "source" : "film",
+            "target" : "inventory",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "2d56fa43-abf4-4b7d-90e9-63b52fb7d25c",
+            "source" : "staff",
+            "target" : "inventory",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "2bec5227-92a1-49be-9349-6366001d8f1b",
+            "source" : "customer",
+            "target" : "inventory",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "2b8862d1-a3fe-46ce-a090-d73a81cdb711",
+            "source" : "inventory",
+            "target" : "rental",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "daba4d55-758e-43fc-b897-47d26b76a0f6",
+            "source" : "film",
+            "target" : "rental",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "d6738d96-7159-4f83-b4cf-b609503b50f4",
+            "source" : "staff",
+            "target" : "rental",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "5ab8fd9c-189c-42fd-aa99-12b2d215da07",
+            "source" : "customer",
+            "target" : "rental",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "e68462c3-2244-4208-af56-14aa62748b13",
+            "source" : "staff",
+            "target" : "payment",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "2c2d0545-b4cb-467d-a652-1342c0e14cd7",
+            "source" : "customer",
+            "target" : "payment",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "b7ae5d71-ff05-498c-a548-5fb9b104c406",
+            "source" : "rental",
+            "target" : "payment",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "b54c01fb-baa7-4eee-87f8-ec7a68256f1c",
+            "source" : "inventory",
+            "target" : "payment",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "2fd280df-67b4-44cb-a468-1a8d2346cced",
+            "source" : "store",
+            "target" : "customer",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          }, {
+            "id" : "15d3bebd-1932-4bda-9934-e2c911ac608d",
+            "source" : "address",
+            "target" : "customer",
+            "markerStart" : "START_ONE",
+            "markerEnd" : "END_MANY"
+          } ]
+        }
+      } ]
+    }
+  },
+  "connectionDetails" : {
+    "jdbc" : {
+      "type" : "MYSQL",
+      "url" : "jdbc:mysql://application-user:*****@34.66.118.177:3306/sakila",
+      "user" : "",
+      "password" : ""
+    },
+    "mongodb" : {
+      "connectionString" : "mongodb://localhost:27017/migration3"
+    }
+  }
+}

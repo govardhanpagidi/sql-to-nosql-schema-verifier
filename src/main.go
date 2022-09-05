@@ -1,20 +1,19 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
+	"io/ioutil"
+	"log"
 	clients2 "verifier/src/clients"
+	models "verifier/src/models"
 )
 
 var dbName = "migration2"
 var collName = "film"
 var tableName = "film"
 
-//var connString = "mongodb://localhost:27017"
-//var connString = "mongodb+srv://gov-mongopush:HvkzKmiA1shW8YkN@mongodbsource.kn30v.mongodb.net/?retryWrites=true&w=majority"
-//var mongoConnString = "mongodb+srv://saviour:saviour@saviour.dwhf9.mongodb.net/gdelt"
-
-var mongoConnString = fmt.Sprintf("mongodb://localhost:27017/%s", dbName)
-var mysqlConnString = "application-user:application-user123@tcp(34.66.118.177:3306)/sakila"
+var schemaPath = "schema.json"
 
 func main() {
 
@@ -34,5 +33,27 @@ func main() {
 		return
 	}
 	fmt.Println("Continue checking data comparison... ")
+
+	//load migration schema file
+	content, err := ioutil.ReadFile(schemaPath)
+	if err != nil {
+		log.Fatalf("error in reading %s schema file.", schemaPath)
+	}
+
+	var schema models.MigrationSchema
+	err = json.Unmarshal(content, &schema)
+
+	if err != nil {
+		log.Fatalf("error in unmarshalling %s schema data.", schemaPath)
+	}
+
+	for _, value := range schema.Content.Mappings {
+		if value.Table == tableName {
+			value.CollectionId
+			//Get collection id from mappings
+
+			//Find the collection names from relation ships
+		}
+	}
 
 }
