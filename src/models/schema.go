@@ -13,12 +13,12 @@ type MigrationSchema struct {
 			Casing      interface{} `json:"casing"`
 			KeyHandling string      `json:"keyHandling"`
 		} `json:"settings"`
-		Collections   interface{}        `json:"collections"`
-		Mappings      map[string]Mapping `json:"mappings"`
+		Collections   map[string]Collection `json:"collections"`
+		Mappings      map[string]Mapping    `json:"mappings"`
 		Relationships struct {
-			Tables      interface{} `json:"tables"`
-			Collections interface{} `json:"collections"`
-			Mappings    interface{} `json:"mappings"`
+			Tables      map[string]Mappings `json:"tables"`
+			Collections interface{}         `json:"collections"`
+			Mappings    interface{}         `json:"mappings"`
 		} `json:"relationships"`
 		Diagrams struct {
 			Tabs []struct {
@@ -96,7 +96,7 @@ type Source struct {
 type Settings struct {
 	Type         string      `json:"type"`
 	Notes        interface{} `json:"notes"`
-	EmbeddedPath interface{} `json:"embeddedPath"`
+	EmbeddedPath string      `json:"embeddedPath"`
 }
 
 type Mapping struct {
@@ -104,4 +104,21 @@ type Mapping struct {
 	Fields       interface{} `json:"fields"`
 	CollectionId string      `json:"collectionId"`
 	Table        string      `json:"table"`
+}
+
+type Mappings struct {
+	Ids []string `json:"mappings"`
+}
+
+type Children struct {
+	Children []string `json:"children"`
+}
+
+type Collection struct {
+	Name string `json:"name"`
+}
+
+type RecordData struct {
+	RowCount int64
+	DocCount int64
 }
