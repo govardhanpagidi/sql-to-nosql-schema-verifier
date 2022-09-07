@@ -6,6 +6,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
+	"verifier/src/models"
 )
 
 func getMongoClient(connString string, ctx context.Context) (*mongo.Client, error) {
@@ -33,22 +34,27 @@ func GetCollection(connString, dbName, collName string, ctx context.Context) *mo
 	return collection
 }
 
-func GetCollectionCount(connString, dbName, collName string, embeddedPath string) int64 {
+func GetCollectionCount(connString, dbName, collName, embeddedPath, embeddedType, relKey string) (int64, error) {
 	var ctx = context.Background()
 	count := int64(0)
+	var err error
 	coll := GetCollection(connString, dbName, collName, ctx)
-	if embeddedPath == "" {
-		count, err := coll.CountDocuments(ctx, bson.D{})
-		if err != nil {
-			fmt.Println(err)
-		}
-		return count
+	switch embeddedType {
+	case models.NEW_DOCUMENT:
+		count, err = coll.CountDocuments(ctx, bson.D{})
+	case models.EMBEDDED_DOCUMENT:
+		count, err = getEmbeddedDocumentCount(coll, embeddedPath, relKey)
+	case models.EMBEDDED_DOCUMENT_ARRAY:
+		count, err = getEmbeddedArrayCount(coll, embeddedPath)
 	}
-	count = getEmbeddedCollectionCount(coll, embeddedPath)
-	return count
+
+	if err != nil {
+		fmt.Println(err)
+	}
+	return count, err
 }
 
-func getEmbeddedCollectionCount(collection *mongo.Collection, embeddedPath string) int64 {
+func getEmbeddedArrayCount(collection *mongo.Collection, embeddedPath string) (int64, error) {
 	var ctx = context.Background()
 	count := int64(0)
 	var aggregateQry = bson.A{
@@ -82,18 +88,64 @@ func getEmbeddedCollectionCount(collection *mongo.Collection, embeddedPath strin
 	cursor, err := collection.Aggregate(ctx, aggregateQry)
 	if err != nil && cursor == nil {
 		fmt.Println(err)
-		panic(err)
+		return count, err
 	}
 
 	var results []bson.Raw
 	if err = cursor.All(context.TODO(), &results); err != nil {
-		panic(err)
+		return count, err
 	}
 
 	for _, result := range results {
 		count = int64(result.Lookup("total").Int32())
 	}
-	return count
+	return count, err
+}
+
+func getEmbeddedDocumentCount(collection *mongo.Collection, embeddedPath, relKey string) (int64, error) {
+	var ctx = context.Background()
+	count := int64(0)
+	var aggregateQry = bson.A{
+		bson.D{
+			{"$project",
+				bson.D{
+					{"elems", "$" + embeddedPath},
+					{"fid", "1"},
+				},
+			},
+		},
+		bson.D{{"$unwind", bson.D{{"path", "$elems"}}}},
+		bson.D{
+			{"$group",
+				bson.D{
+					{"_id", "$fid"},
+					{"elems", bson.D{{"$addToSet", "$elems." + relKey}}},
+				},
+			},
+		},
+		bson.D{
+			{"$project",
+				bson.D{
+					{"item", 1},
+					{"total", bson.D{{"$size", "$elems"}}},
+				},
+			},
+		},
+	}
+	cursor, err := collection.Aggregate(ctx, aggregateQry)
+	if err != nil && cursor == nil {
+		fmt.Println(err)
+		return count, err
+	}
+
+	var results []bson.Raw
+	if err = cursor.All(context.TODO(), &results); err != nil {
+		return count, err
+	}
+	for _, result := range results {
+		count = int64(result.Lookup("total").Int32())
+	}
+	return count, err
 }
 
 type DocCount struct {

@@ -1,0 +1,274 @@
+[
+  {
+    $project: {
+      actors:"$film_actors",
+      fid:"1"
+    }
+  },
+  {
+    $unwind:{path: "$actors"}
+  },
+  {
+    $group:{
+      _id:"$fid",
+      actors:{$addToSet:"$actors.actor_id"}
+    }
+  },{
+    $project:{
+      item:1,
+      total:{ $size:"$actors"}
+    }
+  }
+]
+
+
+
+
+db.film.aggregate(
+[
+  {
+    $project: {
+      _id:0,
+      inv_count:{$count:"inventories"},
+    }
+  },
+  {
+    $group: {
+      inv_total:{$sum:"$inv_count"},
+    }
+  }
+]
+)
+
+db.film.aggregate([
+  {
+
+    $project: {
+      item: 1,
+      inv_count: { $cond: { if: { $isArray: "$inventories" }, then: { $size: "$inventories" }, else: 0} }
+    }
+  },
+  {
+    "$group" :{
+      _id :1,
+      inv_total:{$sum:"$inv_count"},
+    }
+  }
+] )
+
+
+db.film.aggregate([
+  {
+
+    $project: {
+      item: 1,
+      inv_count: { $cond: { if: { $isArray: "$film_actors" }, then: { $size: "$film_actors" }, else: 0} }
+    }
+  },
+  {
+    "$group" :{
+      _id :1,
+      inv_total:{$sum:"$inv_count"},
+    }
+  }
+] )
+
+db.film.aggregate([
+  {
+    $unwind: "$film_actors"
+  },
+  {
+    $group:{ _id : ""$_id",actors:{$addToSet:"$film_actors"}
+    }
+
+  ])
+
+
+    db.film.aggregate([
+    {
+
+      $project: {
+        item: 1,
+        inv_count: { $cond: { if: { $isArray: "$film_actors.actor" }, then: { $size: "$film_actors.actor" }, else: 0} }
+      }
+    },
+    {
+      "$group" :{
+        _id :1,
+        inv_total:{$sum:"$inv_count"},
+      }
+    }
+  ] )
+
+
+  db.film.aggregate([{ $unwind: "$inventories" }] )
+
+
+  bson.A{
+    bson.D{
+  {"$project",
+    bson.D{
+  {"item", 1},
+  {"inv_count",
+    bson.D{
+  {"$cond",
+    bson.D{
+  {"if", bson.D{{"$isArray", "$inventories"}}},
+  {"then", bson.D{{"$size", "$inventories"}}},
+  {"else", 0},
+  },
+  },
+  },
+  },
+  },
+  },
+},
+  bson.D{
+  {"$group",
+    bson.D{
+  {"_id", 1},
+  {"inv_total", bson.D{{"$sum", "$inv_count"}}},
+},
+},
+},
+}
+
+
+  db.go1.insertMany([
+    { "_id" : 6, "item" : "ABC", price: NumberDecimal("80"), "sizes": [ {value:13},{value:11},{value:2}] },
+    { "_id" : 7, "item" : "EFG", price: NumberDecimal("120"), "sizes" : [ {value:10},{value:1},{value:12}]},
+    { "_id" : 8, "item" : "IJK", price: NumberDecimal("160"), "sizes": [ {value:10},{value:11},{value:12}] }
+  ])
+
+  db.film.aggregate([
+    {
+      $project: {
+        actors:"$film_actors",
+        fid:"_id"
+      }
+
+    },
+    {
+      $unwind:{path: "$actors",preserveNullAndEmptyArrays: true}
+    },
+    {
+      $group:{
+        _id:"$fid",
+        actors:{"$addToSet:$actors"}
+      }
+    },
+    {
+      $unwind:{path: "$actors"}
+    },
+  ])
+
+  db.film.aggregate([
+    {
+      $project: {
+        actors:"$film_actors",
+        fid:"_id"
+      }
+    },
+    {
+      $unwind:{path: "$film_actors"}
+    },
+    {
+      $group:{
+        _id:"$fid",
+        actors:{$addToSet:"$film_actors"}
+      }
+    },
+    {
+      $unwind:"$actors"
+    }
+  ])
+
+
+,
+  {
+    $group:{
+      _id:{actors:"$actors"},
+      count:{$sum:1}
+    }
+  }
+
+
+
+
+  db.go1.aggregate([
+    {
+      $project: {
+        sizes:"$sizes",
+        fid:"_id"
+      }
+    },
+    {
+      $unwind:{path: "$sizes"}
+    },
+    {
+      $group:{
+        _id:"$fid",
+        sizes:{$addToSet:"$sizes"}
+      }
+    },
+    {
+      $unwind:"$sizes"
+    },
+    {
+      $group:{
+        _id:{actors:"$sizes"},
+        count:{$sum:1}
+      }
+    }
+  ])
+
+  db.go1.aggregate([
+    {
+      $project: {
+        sizes:"$sizes",
+        fid:"1"
+      }
+    },
+    {
+      $unwind:{path: "$sizes"}
+    },
+    {
+      $group:{
+        _id:"$fid",
+        sizes:{$addToSet:"$sizes"}
+      }
+    },{
+      $project:{
+        item:1,
+        total:{ $size:"$sizes"}
+      }
+    }
+  ])
+
+  db.film.aggregate([
+    {
+      $project: {
+        actors:"$film_actors",
+        fid:"1"
+      }
+    },
+    {
+      $unwind:{path: "$actors"}
+    },
+    {
+      $group:{
+        _id:"$fid",
+        actors:{$addToSet:"$actors.actor_id"}
+      }
+    },{
+      $project:{
+        item:1,
+        total:{ $size:"$actors"}
+      }
+    }
+  ])
+
+
+
+  var filter = Builders<BsonDocument>.Filter.AnyEq("film_actors", new BsonDocument { { "actor_id", 198 } });
+  var result = db.film.Find(filter).ToList();

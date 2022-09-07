@@ -20,11 +20,9 @@ var collName = "film"
 var tableName = "film"
 
 var schemaPath = "schema.json"
+var configPath = "config.json"
 var mysqlConnString = ""
 var mongoConnString = ""
-
-const NEW_DOCUMENT = "NEW_DOCUMENT"
-const EMBEDDED_DOCUMENT_ARRAY = "EMBEDDED_DOCUMENT_ARRAY"
 
 var dataCounts map[string]models.RecordData
 
@@ -39,11 +37,19 @@ func main() {
 	var schema models.MigrationSchema
 	err = json.Unmarshal(content, &schema)
 
+	//Load config file
+	data, err := ioutil.ReadFile(configPath)
+	if err != nil {
+		log.Fatalf("error in reading %s schema file.", schemaPath)
+	}
+	var config models.Config
+	err = json.Unmarshal(data, &config)
+
 	if err != nil {
 		log.Fatalf("error in unmarshalling %s schema data.", schemaPath)
 	}
-	mongoConnString = schema.ConnectionDetails.Mongodb.ConnectionString
-	mysqlConnString = strings.TrimPrefix(schema.ConnectionDetails.Jdbc.Url, "jdbc:mysql://")
+	mongoConnString = config.Mongodb.ConnectionString
+	mysqlConnString = strings.TrimPrefix(config.Jdbc.Url, "jdbc:mysql://")
 
 	var wg sync.WaitGroup
 	//Find relationship id
@@ -56,13 +62,23 @@ func main() {
 			for id, data := range schema.Content.Mappings {
 				if id == mapid {
 					//If type is NEW_DOCUMENT it is one-to-one mapping (table to collection)
-					if data.Settings.Type == NEW_DOCUMENT {
+					if data.Settings.Type == models.NEW_DOCUMENT {
 						wg.Add(1)
-						go compareCount(dataCounts, &wg, strings.TrimPrefix(data.Table, "sakila.sakila."), schema.Name, schema.Content.Collections[data.CollectionId].Name, "")
-					} else if data.Settings.Type == EMBEDDED_DOCUMENT_ARRAY && data.Settings.EmbeddedPath != "" {
+						go compareCount(dataCounts, &wg, strings.TrimPrefix(data.Table, "sakila.sakila."), schema.Name, schema.Content.Collections[data.CollectionId].Name, "", models.NEW_DOCUMENT, "")
+					} else if data.Settings.Type == models.EMBEDDED_DOCUMENT_ARRAY && data.Settings.EmbeddedPath != "" {
 						wg.Add(1)
 						//TODO: For Embedded Doc Count we should use diff collectionid
-						go compareCount(dataCounts, &wg, strings.TrimPrefix(data.Table, "sakila.sakila."), schema.Name, schema.Content.Collections[data.CollectionId].Name, data.Settings.EmbeddedPath)
+						go compareCount(dataCounts, &wg, strings.TrimPrefix(data.Table, "sakila.sakila."), schema.Name, schema.Content.Collections[data.CollectionId].Name, data.Settings.EmbeddedPath, models.EMBEDDED_DOCUMENT_ARRAY, "")
+					} else if data.Settings.Type == models.EMBEDDED_DOCUMENT {
+						relKey := ""
+						for key, val := range data.Fields {
+							if val.Source.IsPrimaryKey {
+								relKey = key
+							}
+						}
+						wg.Add(1)
+						//TODO: For Embedded Doc Count we should use diff collectionid
+						go compareCount(dataCounts, &wg, strings.TrimPrefix(data.Table, "sakila.sakila."), schema.Name, schema.Content.Collections[data.CollectionId].Name, data.Settings.EmbeddedPath, models.EMBEDDED_DOCUMENT, relKey)
 					}
 				}
 			}
@@ -70,23 +86,25 @@ func main() {
 	}
 	wg.Wait()
 	PrintSummary(dataCounts)
-
 }
 
-func compareCount(data map[string]models.RecordData, wg *sync.WaitGroup, tableName, dbName, collName, embeddedPath string) {
+func compareCount(data map[string]models.RecordData, wg *sync.WaitGroup, tableName, dbName, collName, embeddedPath, embeddedType, relKey string) error {
 	defer wg.Done()
 	//get mysql client
 	mysqlClient, err := clients2.GetMySqlClient(mysqlConnString)
 	if err != nil {
 		fmt.Println(err)
-		return
+		return err
 	}
 	//Get Row Count of a table
 	rowCount := clients2.GetRowCount(mysqlClient, tableName)
 
 	//Get mongodb collection count
-	collCount := clients2.GetCollectionCount(mongoConnString, dbName, collName, embeddedPath)
-	data[tableName] = models.RecordData{RowCount: int64(rowCount), DocCount: collCount}
+	collCount, err := clients2.GetCollectionCount(mongoConnString, dbName, collName, embeddedPath, embeddedType, relKey)
+	if err != nil {
+		return err
+	}
+	data[tableName] = models.RecordData{RowCount: int64(rowCount), DocCount: collCount, CollectionName: collName}
 	//if int64(rowCount) != collCount {
 	//	fmt.Printf("Documents count mismatched, mysql:%s table count is :%d but mongodb:%s Colleciton count is :%d", tableName, rowCount, collName, collCount)
 	//	fmt.Println()
@@ -95,15 +113,25 @@ func compareCount(data map[string]models.RecordData, wg *sync.WaitGroup, tableNa
 	//}
 	//fmt.Printf(" Matched, Table:%s RowCount:%d , DocCount:%d", tableName, rowCount, collCount)
 	//fmt.Println()
-	return
+
+	return err
 }
 
 func PrintSummary(dataCounts map[string]models.RecordData) {
 	table := tablewriter.NewWriter(os.Stdout)
-	table.SetHeader([]string{"Table Name", "No Of Rows", "No Of Docs", "Count Matched?"})
+	table.SetHeader([]string{"Table", "Row Count", "Collection ", "Doc Count", "Count Matched?"})
 
 	for key, data := range dataCounts {
-		table.Append([]string{key, strconv.FormatInt(data.RowCount, 10), strconv.FormatInt(data.DocCount, 10), strconv.FormatBool(data.DocCount == data.RowCount)})
+		matched := "yes"
+		if data.DocCount != data.RowCount {
+			matched = "no"
+		}
+		table.Append(
+			[]string{key,
+				strconv.FormatInt(data.RowCount, 10),
+				data.CollectionName,
+				strconv.FormatInt(data.DocCount, 10),
+				matched})
 	}
 	table.Render()
 }

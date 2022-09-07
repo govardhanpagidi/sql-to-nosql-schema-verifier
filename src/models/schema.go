@@ -2,6 +2,10 @@ package models
 
 import "time"
 
+const NEW_DOCUMENT = "NEW_DOCUMENT"
+const EMBEDDED_DOCUMENT_ARRAY = "EMBEDDED_DOCUMENT_ARRAY"
+const EMBEDDED_DOCUMENT = "EMBEDDED_DOCUMENT"
+
 type MigrationSchema struct {
 	Id           string    `json:"id"`
 	Name         string    `json:"name"`
@@ -17,8 +21,8 @@ type MigrationSchema struct {
 		Mappings      map[string]Mapping    `json:"mappings"`
 		Relationships struct {
 			Tables      map[string]Mappings `json:"tables"`
-			Collections interface{}         `json:"collections"`
-			Mappings    interface{}         `json:"mappings"`
+			Collections map[string]Mappings `json:"collections"`
+			Mappings    map[string]Children `json:"mappings"`
 		} `json:"relationships"`
 		Diagrams struct {
 			Tabs []struct {
@@ -67,17 +71,19 @@ type MigrationSchema struct {
 			} `json:"tabs"`
 		} `json:"diagrams"`
 	} `json:"content"`
-	ConnectionDetails struct {
-		Jdbc struct {
-			Type     string `json:"type"`
-			Url      string `json:"url"`
-			User     string `json:"user"`
-			Password string `json:"password"`
-		} `json:"jdbc"`
-		Mongodb struct {
-			ConnectionString string `json:"connectionString"`
-		} `json:"mongodb"`
-	} `json:"connectionDetails"`
+	ConnectionDetails Config `json:"connectionDetails"`
+}
+
+type Config struct {
+	Jdbc struct {
+		Type     string `json:"type"`
+		Url      string `json:"url"`
+		User     string `json:"user"`
+		Password string `json:"password"`
+	} `json:"jdbc"`
+	Mongodb struct {
+		ConnectionString string `json:"connectionString"`
+	} `json:"mongodb"`
 }
 
 type Target struct {
@@ -100,10 +106,10 @@ type Settings struct {
 }
 
 type Mapping struct {
-	Settings     Settings    `json:"settings"`
-	Fields       interface{} `json:"fields"`
-	CollectionId string      `json:"collectionId"`
-	Table        string      `json:"table"`
+	Settings     Settings         `json:"settings"`
+	Fields       map[string]Filed `json:"fields"`
+	CollectionId string           `json:"collectionId"`
+	Table        string           `json:"table"`
 }
 
 type Mappings struct {
@@ -119,6 +125,22 @@ type Collection struct {
 }
 
 type RecordData struct {
-	RowCount int64
-	DocCount int64
+	TableName      string
+	RowCount       int64
+	CollectionName string
+	DocCount       int64
+}
+
+type Filed struct {
+	Target struct {
+		Name              string      `json:"name"`
+		Included          bool        `json:"included"`
+		Type              string      `json:"type"`
+		MappedParentField interface{} `json:"mappedParentField"`
+	} `json:"target"`
+	Source struct {
+		Name                 string `json:"name"`
+		DatabaseSpecificType string `json:"databaseSpecificType"`
+		IsPrimaryKey         bool   `json:"isPrimaryKey"`
+	} `json:"source"`
 }
