@@ -12,66 +12,21 @@ type MigrationSchema struct {
 	Type         string    `json:"type"`
 	LastModified time.Time `json:"lastModified"`
 	SchemasId    string    `json:"schemasId"`
-	Content      struct {
-		Settings struct {
-			Casing      interface{} `json:"casing"`
-			KeyHandling string      `json:"keyHandling"`
-		} `json:"settings"`
-		Collections   map[string]Collection `json:"collections"`
-		Mappings      map[string]Mapping    `json:"mappings"`
-		Relationships struct {
-			Tables      map[string]Mappings `json:"tables"`
-			Collections map[string]Mappings `json:"collections"`
-			Mappings    map[string]Children `json:"mappings"`
-		} `json:"relationships"`
-		Diagrams struct {
-			Tabs []struct {
-				Relational struct {
-					Nodes []struct {
-						Id       string `json:"id"`
-						Type     string `json:"type"`
-						Position struct {
-							X float64 `json:"x"`
-							Y float64 `json:"y"`
-						} `json:"position"`
-						TargetPosition interface{} `json:"targetPosition"`
-						SourcePosition interface{} `json:"sourcePosition"`
-						Width          int         `json:"width"`
-						Height         int         `json:"height"`
-					} `json:"nodes"`
-					Edges []struct {
-						Id          string `json:"id"`
-						Source      string `json:"source"`
-						Target      string `json:"target"`
-						MarkerStart string `json:"markerStart"`
-						MarkerEnd   string `json:"markerEnd"`
-					} `json:"edges"`
-				} `json:"relational"`
-				Collection struct {
-					Nodes []struct {
-						Id       string `json:"id"`
-						Type     string `json:"type"`
-						Position struct {
-							X float64 `json:"x"`
-							Y float64 `json:"y"`
-						} `json:"position"`
-						TargetPosition interface{} `json:"targetPosition"`
-						SourcePosition interface{} `json:"sourcePosition"`
-						Width          int         `json:"width"`
-						Height         int         `json:"height"`
-					} `json:"nodes"`
-					Edges []struct {
-						Id          string `json:"id"`
-						Source      string `json:"source"`
-						Target      string `json:"target"`
-						MarkerStart string `json:"markerStart"`
-						MarkerEnd   string `json:"markerEnd"`
-					} `json:"edges"`
-				} `json:"collection"`
-			} `json:"tabs"`
-		} `json:"diagrams"`
-	} `json:"content"`
-	ConnectionDetails Config `json:"connectionDetails"`
+	Content      Content   `json:"content"`
+}
+
+type Content struct {
+	Settings struct {
+		Casing      interface{} `json:"casing"`
+		KeyHandling string      `json:"keyHandling"`
+	} `json:"settings"`
+	Collections   map[string]Collection `json:"collections"`
+	Mappings      map[string]Mapping    `json:"mappings"`
+	Relationships struct {
+		Tables      map[string]Mappings `json:"tables"`
+		Collections map[string]Mappings `json:"collections"`
+		Mappings    map[string]Children `json:"mappings"`
+	} `json:"relationships"`
 }
 
 type Config struct {

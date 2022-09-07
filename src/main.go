@@ -54,8 +54,7 @@ func main() {
 	var wg sync.WaitGroup
 	//Find relationship id
 	for _, relationMappings := range schema.Content.Relationships.Tables {
-		//if tabName == sqlDBName+"."+sqlDBName+"."+tableName {
-		//Traverse relationsship ids , mostly one
+
 		for _, mapid := range relationMappings.Ids {
 			// Compare RelationShip Id with Mappings
 			//If embedded path found you need find the Embedded element of the Document
@@ -88,6 +87,7 @@ func main() {
 	PrintSummary(dataCounts)
 }
 
+//Compare SQL vs NoSQL row count
 func compareCount(data map[string]models.RecordData, wg *sync.WaitGroup, tableName, dbName, collName, embeddedPath, embeddedType, relKey string) error {
 	defer wg.Done()
 	//get mysql client
@@ -104,16 +104,8 @@ func compareCount(data map[string]models.RecordData, wg *sync.WaitGroup, tableNa
 	if err != nil {
 		return err
 	}
+	//Update map for print summary
 	data[tableName] = models.RecordData{RowCount: int64(rowCount), DocCount: collCount, CollectionName: collName}
-	//if int64(rowCount) != collCount {
-	//	fmt.Printf("Documents count mismatched, mysql:%s table count is :%d but mongodb:%s Colleciton count is :%d", tableName, rowCount, collName, collCount)
-	//	fmt.Println()
-	//	dataCounts[tableName] = models.RecordData{RowCount: int64(rowCount), DocCount: collCount}
-	//	return
-	//}
-	//fmt.Printf(" Matched, Table:%s RowCount:%d , DocCount:%d", tableName, rowCount, collCount)
-	//fmt.Println()
-
 	return err
 }
 
