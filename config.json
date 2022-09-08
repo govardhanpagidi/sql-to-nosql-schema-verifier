@@ -1,0 +1,12 @@
+{
+  "jdbc" : {
+    "type" : "MYSQL",
+    "url" : "jdbc:mysql://username:password@tcp(ipaddress:3306)/dbname",
+    "user" : "",
+    "password" : ""
+  },
+  "mongodb" : {
+    "connectionString" : "mongodb://localhost:27017/proj10"
+  },
+  "ddl" : null
+}
