@@ -10,8 +10,9 @@ import (
 	"strconv"
 	"strings"
 	"sync"
-	clients2 "verifier/src/clients"
-	models "verifier/src/models"
+	"time"
+	"verifier/src/clients"
+	"verifier/src/models"
 )
 
 var dbName = "migration2"
@@ -27,6 +28,12 @@ var mongoConnString = ""
 var dataCounts map[string]models.RecordData
 
 func main() {
+
+	defer func() {
+		if err := recover(); err != nil {
+			fmt.Println("panic occurred:", err)
+		}
+	}()
 
 	dataCounts = map[string]models.RecordData{}
 	//load migration schema file
@@ -52,71 +59,83 @@ func main() {
 	mysqlConnString = strings.TrimPrefix(config.Jdbc.Url, "jdbc:mysql://")
 
 	var wg sync.WaitGroup
-	//Find relationship id
-	for _, relationMappings := range schema.Content.Relationships.Tables {
 
-		for _, mapid := range relationMappings.Ids {
-			// Compare RelationShip Id with Mappings
-			//If embedded path found you need find the Embedded element of the Document
-			for id, data := range schema.Content.Mappings {
-				if id == mapid {
-					//If type is NEW_DOCUMENT it is one-to-one mapping (table to collection)
-					if data.Settings.Type == models.NEW_DOCUMENT {
-						wg.Add(1)
-						go compareCount(dataCounts, &wg, strings.TrimPrefix(data.Table, "sakila.sakila."), schema.Name, schema.Content.Collections[data.CollectionId].Name, "", models.NEW_DOCUMENT, "")
-					} else if data.Settings.Type == models.EMBEDDED_DOCUMENT_ARRAY && data.Settings.EmbeddedPath != "" {
-						wg.Add(1)
-						//TODO: For Embedded Doc Count we should use diff collectionid
-						go compareCount(dataCounts, &wg, strings.TrimPrefix(data.Table, "sakila.sakila."), schema.Name, schema.Content.Collections[data.CollectionId].Name, data.Settings.EmbeddedPath, models.EMBEDDED_DOCUMENT_ARRAY, "")
-					} else if data.Settings.Type == models.EMBEDDED_DOCUMENT {
-						relKey := ""
-						for key, val := range data.Fields {
-							if val.Source.IsPrimaryKey {
-								relKey = key
-							}
-						}
-						wg.Add(1)
-						//TODO: For Embedded Doc Count we should use diff collectionid
-						go compareCount(dataCounts, &wg, strings.TrimPrefix(data.Table, "sakila.sakila."), schema.Name, schema.Content.Collections[data.CollectionId].Name, data.Settings.EmbeddedPath, models.EMBEDDED_DOCUMENT, relKey)
-					}
-				}
-			}
+	//Iterate the tables
+	for tabName, relationMappings := range schema.Content.Relationships.Tables {
+		if len(relationMappings.Ids) > 1 {
+
 		}
+		collCount := int64(0)
+		tableName := strings.TrimPrefix(tabName, "sakila.sakila.")
+		collectionName := ""
+		fmt.Println("Comparing : ", tableName)
+		wg.Add(1)
+		//Traverse all the tables and compare the data counts
+		go compareData(&wg, dataCounts, relationMappings, schema, collectionName, collCount, tableName)
+		time.Sleep(time.Millisecond * 200)
 	}
 	wg.Wait()
 	PrintSummary(dataCounts)
 }
 
-//Compare SQL vs NoSQL row count
-func compareCount(data map[string]models.RecordData, wg *sync.WaitGroup, tableName, dbName, collName, embeddedPath, embeddedType, relKey string) error {
-	defer wg.Done()
-	//get mysql client
-	mysqlClient, err := clients2.GetMySqlClient(mysqlConnString)
-	if err != nil {
-		fmt.Println(err)
-		return err
-	}
-	//Get Row Count of a table
-	rowCount := clients2.GetRowCount(mysqlClient, tableName)
+func compareData(s *sync.WaitGroup, dataCounts map[string]models.RecordData, relationMappings models.Mappings, schema models.MigrationSchema, collectionName string, collCount int64, tableName string) {
+	defer s.Done()
+	collections := ""
+	for _, mapid := range relationMappings.Ids {
+		// Compare RelationShip Id with Mappings
+		//If embedded path found you need find the Embedded element of the Document
+		for id, data := range schema.Content.Mappings {
+			relKey := ""
+			if id == mapid {
+				//If type is NEW_DOCUMENT it is one-to-one mapping (table to collection)
+				if data.Settings.Type == models.EMBEDDED_DOCUMENT {
+					//If type is EMBEDDED_DOCUMENT, the table is embedded document or inside the embedded document
+					for key, val := range data.Fields {
+						if val.Source.IsPrimaryKey {
+							relKey = key
+						}
+					}
+				}
 
-	//Get mongodb collection count
-	collCount, err := clients2.GetCollectionCount(mongoConnString, dbName, collName, embeddedPath, embeddedType, relKey)
-	if err != nil {
-		return err
+				collectionName = schema.Content.Collections[data.CollectionId].Name
+
+				//Get mongodb collection count
+				count, err := clients.GetCollectionCount(mongoConnString, schema.Name, schema.Content.Collections[data.CollectionId].Name, data.Settings.EmbeddedPath, data.Settings.Type, relKey)
+				if err != nil {
+					fmt.Println(err)
+					return
+				}
+				if data.Settings.EmbeddedPath != "" {
+					collections += collectionName + "." + data.Settings.EmbeddedPath + "\n"
+				} else {
+
+					collections += collectionName + "\n"
+				}
+
+				collCount += count
+			}
+		}
 	}
+
+	//Table Count
+	sqlRowCount, err := clients.GetSqlRowCount(mysqlConnString, tableName)
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+
 	//Update map for print summary
-	data[tableName] = models.RecordData{RowCount: int64(rowCount), DocCount: collCount, CollectionName: collName}
-	return err
+	dataCounts[tableName] = models.RecordData{RowCount: int64(sqlRowCount), DocCount: collCount, CollectionName: collections}
+	return
 }
 
 func PrintSummary(dataCounts map[string]models.RecordData) {
 	table := tablewriter.NewWriter(os.Stdout)
-	table.SetHeader([]string{"Table", "Row Count", "Collection ", "Doc Count", "Count Matched?"})
-
+	table.SetHeader([]string{"Table", "Row_Count", "Collection ", "Doc_Count", "Matched?"})
 	for key, data := range dataCounts {
-		matched := "yes"
-		if data.DocCount != data.RowCount {
-			matched = "no"
+		matched := "YES"
+		if data.DocCount < data.RowCount {
+			matched = "NO"
 		}
 		table.Append(
 			[]string{key,
@@ -124,6 +143,8 @@ func PrintSummary(dataCounts map[string]models.RecordData) {
 				data.CollectionName,
 				strconv.FormatInt(data.DocCount, 10),
 				matched})
+
 	}
 	table.Render()
+
 }
