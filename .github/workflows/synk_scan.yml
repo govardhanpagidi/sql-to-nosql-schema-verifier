@@ -2,11 +2,9 @@ name: Snyk Security Check
 
 on:
   push:
-    branches:
-      - main  # Adjust to your primary branch
+   
   pull_request:
-    branches:
-      - main  # Adjust to your primary branch
+   
 
 jobs:
   snyk:
